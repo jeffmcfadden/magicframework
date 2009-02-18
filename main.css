@@ -1,0 +1,252 @@
+/**
+ * For use with MagicFramework
+ * http://www.jeffmcfadden.com/magicframework
+ * This work by Jeff McFadden is licensed under a Creative Commons Attribution 3.0 United States License.
+ * 
+ */
+
+body{
+    margin: 0;
+    font-family: "Helvetica", sans-serif;
+}
+
+#browser{
+    background: url( backgroundStripes.png );
+    background-repeat: repeat;
+    width: 320px;
+    height: auto;
+    overflow: hidden;
+}
+
+.view{
+    background: url( backgroundStripes.png );
+    background-repeat: repeat;
+    min-height: 406px;
+}
+
+#header{
+    position: relative;
+    left: 0px;
+    top: 0px;
+    height: 44px;
+    font-size: 16pt;
+    border-top-width: 0px;
+    border-right-width: 1px;
+    border-bottom-width: 0px;
+    border-left-width: 1px;
+    width: auto;
+    margin-right: 0px;
+    margin-left: 0px;        
+    background: url( header.png );
+}
+
+.header_title{
+    text-align: center;
+    position: relative;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0px;
+}
+
+.back_button{
+    font-weight: bold;
+    font-size: 12px;
+    color: rgb(255, 255, 255);
+    text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0px;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    height: 22px;
+    padding-top: 8px;
+    width: 60px;
+
+    position: absolute;
+    right: auto;
+    bottom: auto;
+    margin-top: 0px;
+    top: 7px;
+    left: 5px;
+    
+    -webkit-border-image: url(back_button.png) 0 5 0 16 / 1px 5px 1px 16px stretch stretch;
+}
+
+#current_title{
+    color: #FFF;
+}
+
+#splash{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #FFF;
+    width: 320px;
+    height: 460px;
+    z-index: 999999;
+    background-image: url( splash.png );
+}
+
+#main_menu{
+    background: url( splash-bg-blur.png );
+    min-height: 406px;
+    height: 406px;
+    
+}
+
+#event_prevention{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+    z-index: -50;
+}
+
+#async_block_wait{
+	position: absolute;
+    top: 0px;
+    left: 0px;
+	width: 320px;
+	height: 460px;
+	padding: 0;
+	margin: 0;
+	background-color: rgba( 0, 0, 0, .7 );
+	color: #FFF;
+	font-size: 150%;
+	text-align: center;
+}
+
+.list{
+    margin-top: 5px;
+}
+
+.list li{
+    width: 290px;
+    height: 20px;
+	background-color: #FFF;
+	border-left:  1px solid #AAA;
+	border-right: 1px solid #AAA;
+	border-bottom: 1px solid #AAA;
+
+	list-style-type: none;
+	padding: 12px 5px 10px 5px;
+	margin-left: -36px;
+}
+
+.list li:first-of-type{
+	border-top: 1px solid #AAA;
+	-webkit-border-top-right-radius:    8px 8px;
+    -webkit-border-top-left-radius:     8px 8px;	
+}
+
+.list li:last-of-type{
+    border-top: none;
+	border-bottom: 1px solid #AAA;
+
+	-webkit-border-bottom-left-radius:  8px 8px;
+	-webkit-border-bottom-right-radius: 8px 8px;
+}
+
+
+.list .list_label{
+    font-weight: bold;
+    color: #000;
+    text-align: left;
+    width: 145px;
+    float: left;
+}
+
+.list .list_value{
+    color: #6e82a8;
+    text-align: right;
+    width: 140px;
+    float: right;
+}
+
+.list .selected_item{
+    color: #4c566c;
+}
+
+.list_section_label{
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 15px;
+    text-shadow: rgba(255, 255, 255, 1) 0px 1px 0px;
+    color: #4c566c;
+}
+
+.list_section_note{
+    font-size: 14px;
+    margin-left: 15px;
+    text-shadow: rgba(255, 255, 255, 1) 0px 1px 0px;
+    color: #4c566c;
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: -5px;
+}
+
+.on_off_control{
+    height: 25px;
+    width: 92px;
+    background: url( 'on_off_bg.png' );
+    border: 1px solid #979797;
+    -webkit-border-top-right-radius:    5px 5px;
+    -webkit-border-top-left-radius:     5px 5px;
+    -webkit-border-bottom-left-radius:  5px 5px;
+    -webkit-border-bottom-right-radius: 5px 5px;
+	-webkit-transition-property: background-position;
+	-webkit-transition-duration: .35s;
+	-webkit-transition-timing-function: ease-in-out;
+}
+
+.on_off_control.off{
+    background-position: -53px, 0px;
+}
+
+.on_off_control.on{
+    background-position: -0px, 0px;
+}
+
+.list_value .on_off_control{
+    float: right;
+    -webkit-transform: translate( 0px, -5px );
+}
+
+.view{
+    width: 1px solid green;
+}
+
+.help_content{
+	margin-left: -5px;
+	margin-top:  -5px;
+	background-color: #FFF;
+	min-height: 460px;
+	width: 310px;
+	padding: 5px;
+}
+
+.help_content h2{
+	margin-top: 0px;
+	color: #6e82a8;
+}
+
+
+
+.list_arrow{
+    padding-left: 10px;
+    float: right;
+}
+
+.list_checkmark{
+    float: right;
+}
+
+.list_input{
+    color: #6e82a8;
+    text-align: right;
+    width: 130px;
+    border: none;
+    background: none;
+    margin-right: 10px;
+    -webkit-appearance: none; 
+    
+}

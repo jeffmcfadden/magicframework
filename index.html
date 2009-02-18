@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>Magic Framework Demo</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1">
+    
+    <script type="text/javascript" src="WebKitDetect.js"></script>
+    
+    <script type="text/javascript" src="magic_framework.js"></script>
+    <script type="text/javascript" src="jquery.js"></script>
+    <link type="text/css" rel="stylesheet" href="main.css" />
+    <style type="text/css">
+    .active_list_item, .list_item:active{
+        background-image: url( 'selection.png' );
+        background-repeat: repeat-x;
+        background-color: #194fdb !important;
+    }
+    </style>
+    
+    <script type="text/javascript">
+    function init(){
+        Interface = new MagicFramework(  );
+        Interface.Init();
+        Interface.GoForward( 'help', 'Main Menu' );
+        setTimeout( function(){ Interface.HideSplash(); }, 300 );
+        
+        document.getElementById( 'help_content' ).innerHTML += '<div class="list_section_note">Magic Framework ' + Interface.version + '</div>';
+        
+        var MagicListDef = [
+            {
+                label: 'Quick Start',
+                value: '',
+                func:  function(){ Interface.GoForward( 'help_quickstart', 'Quick Start' ); },
+                arrow: true
+            },
+            {
+                label: 'About',
+                value: '',
+                func:  function(){ Interface.GoForward( 'help_about', 'About' ); },
+                arrow: true
+            },
+            {
+                label: 'How It Works',
+                value: '',
+                func:  function(){ Interface.GoForward( 'help_works', 'How It Works' ); },
+                arrow: true
+            },
+            {
+                label: 'PhoneGap',
+                value: '',
+                func:  function(){ Interface.GoForward( 'help_phonegap', 'PhoneGap' ); },
+                arrow: true
+            },
+            {
+                label: 'Credits',
+                value: '',
+                func:  function(){ Interface.GoForward( 'help_credits', 'Credits' ); },
+                arrow: true
+            }
+        ];
+        
+        Interface.BuildList( { list: MagicListDef, name: 'help_index', el: 'help_content', append: true } );
+        
+        //Editing the help_content div after here seems to break the list functions. This is a known issue
+        //that is being worked on. You can always call the MagicListItem function manually to get any element
+        //setup the way it needs to be setup.
+    }
+    
+    
+    </script>
+    
+    
+</head>
+<!-- 
+    /**
+     * For use with MagicFramework
+     * http://www.jeffmcfadden.com/magicframework
+     * This work by Jeff McFadden is licensed under a Creative Commons Attribution 3.0 United States License.
+     * 
+     */
+-->
+<body style="width: 320px; height: 460px;" onLoad="init();">
+
+
+    <div id="browser">
+        <div id="splash">
+            &nbsp;
+        </div>
+        <div id="header">
+            <div class="back_button" id="back_button">
+                Back
+            </div>
+            <div class="header_title" id="current_title">
+                &nbsp;
+            </div>
+        </div>
+        <div id="viewport">
+            
+            <div class="view" id="help">
+                <div class="view_content" id="help_content">
+                    
+                    
+                    
+
+                </div>
+            </div>
+            
+            <div class="view" id="help_quickstart">
+                <div class="view_content help_content" id="help_quickstart_content">
+                    <h2>Quick Start</h2>
+                    <ol>
+                        <li>Take a look at the index.html file</li>
+                        <li>Modify the lists/views to suit your needs</li>
+                        <li>Load up the page in Safari and see how it works for you.</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="view" id="help_about">
+                <div class="view_content help_content" id="help_about_content">
+                    <h2>About Magic Framework</h2>
+                    <p>Magic Framework is a native iPhone UI imitator built in html/css/javascript. It's useful for online websites or on-device Webkit-based applications looking to imitate the native iPhone UI without having to write native code.
+                    </p>
+                    
+                </div>
+            </div>
+            
+            <div class="view" id="help_sec">
+                <div class="view_content help_content" id="help_sec_content">
+                    <h2>SEC</h2>
+                    <p>The SEC's job is to regulate the market, and root out Inside Traders like yourself. The more successful you are, the most attention you'll attract from the SEC. Similarly, the more you trade on the advice of the Tipster, the more attention you'll attract from the SEC.</p>
+                    <p>If your SEC threat bar gets to full, you'll be busted by the SEC and have to face trial for charges of Inside Trading!</p>
+                </div>
+            </div>
+            
+            <div class="view" id="help_works">
+                <div class="view_content help_content" id="help_works_content">
+                    <h2>How It Works</h2>
+                    <p>
+                        Magic Framework is built in javascript, html, and css. <a href="#" onClick="Interface.GoForward( 'help_css3', 'CSS3' );">CSS3 transitions</a> are used to build the transitions between pages, and images and other css styles are used to build the interface to have a native iphone look &amp; feel.
+                        
+                    </p>
+                </div>
+            </div>
+            
+            <div class="view" id="help_css3">
+                <div class="view_content help_content" id="help_css3_content">
+                    <h2>CSS3 Transitions</h2>
+                    <p>
+                        CSS3 Transitions are a new feature to webkit, especially mobile safari. Magic Framework makes use of some of the following:</p>
+                        <ul>
+                            <li>-webkit-border-*-*-radius</li>
+                            <li>-webkit-transition-property</li>
+                        	<li>-webkit-transition-duration</li>
+                        	<li>-webkit-transition-timing-function</li>
+                        </ul>
+                        	
+                        
+                    
+                </div>
+            </div>
+            
+            <div class="view" id="help_phonegap">
+                <div class="view_content help_content" id="help_phonegap_content">
+                    <h2>PhoneGap</h2>
+                    <p><a href="http://www.phonegap.com">PhoneGap</a> is a development tool that allows web developers to take advantage of the core features in the iPhone, Android, and Blackberry SDK using JavaScript.</p>
+                    <p>Magic Framework is a great fit for developers using PhoneGap or similar projects to build native iPhone apps ontop of web technologies.</p>
+                </div>
+            </div>
+            
+            <div class="view" id="help_credits">
+                <div class="view_content help_content" id="help_credits_content">
+                    <h2>Credits</h2>
+                    <p>Magic Framework was build by Jeff McFadden and is used in his iPhone game, <a href="http://www.insidetraderapp.com">Inside Trader</a>.</p>
+                </div>
+            </div>
+            
+            
+        </div>
+            <div id="event_prevention"></div>
+            
+    </div>
+
+    
+</body>
+</html>
