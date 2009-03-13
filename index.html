@@ -8,6 +8,8 @@
     <script type="text/javascript" src="WebKitDetect.js"></script>
     
     <script type="text/javascript" src="magic_framework.js"></script>
+    <script type="text/javascript" src="magic_prefs.js"></script>
+    <script type="text/javascript" src="json2.js"></script>
     <script type="text/javascript" src="jquery.js"></script>
     <link type="text/css" rel="stylesheet" href="main.css" />
     <style type="text/css">
@@ -19,48 +21,45 @@
     </style>
     
     <script type="text/javascript">
+    var Interface;
+    var Prefs;
+    
+    function ButtonizeMainMenu(){
+        Interface.MakeMagicButton( 'list_item_quickstart', function(){ Interface.GoForward( 'help_quickstart', 'Quick Start' ); } );
+        Interface.MakeMagicButton( 'list_item_about', function(){ Interface.GoForward( 'help_about', 'About' ); } );
+        Interface.MakeMagicButton( 'list_item_howitworks', function(){ Interface.GoForward( 'help_works', 'How It Works' ); } );
+        Interface.MakeMagicButton( 'list_item_phonegap', function(){ Interface.GoForward( 'help_phonegap', 'PhoneGap' ); } );
+        Interface.MakeMagicButton( 'list_item_credits', function(){ Interface.GoForward( 'help_credits', 'Credits' ); } );
+        
+        document.getElementById( 'version' ).innerHTML = 'Magic Framework ' + Interface.version + '</div>';
+    }
+    
     function init(){
         Interface = new MagicFramework(  );
         Interface.Init();
         Interface.GoForward( 'help', 'Main Menu' );
         setTimeout( function(){ Interface.HideSplash(); }, 300 );
         
-        document.getElementById( 'help_content' ).innerHTML += '<div class="list_section_note">Magic Framework ' + Interface.version + '</div>';
-        
-        var MagicListDef = [
-            {
-                label: 'Quick Start',
-                value: '',
-                func:  function(){ Interface.GoForward( 'help_quickstart', 'Quick Start' ); },
-                arrow: true
-            },
-            {
-                label: 'About',
-                value: '',
-                func:  function(){ Interface.GoForward( 'help_about', 'About' ); },
-                arrow: true
-            },
-            {
-                label: 'How It Works',
-                value: '',
-                func:  function(){ Interface.GoForward( 'help_works', 'How It Works' ); },
-                arrow: true
-            },
-            {
-                label: 'PhoneGap',
-                value: '',
-                func:  function(){ Interface.GoForward( 'help_phonegap', 'PhoneGap' ); },
-                arrow: true
-            },
-            {
-                label: 'Credits',
-                value: '',
-                func:  function(){ Interface.GoForward( 'help_credits', 'Credits' ); },
-                arrow: true
+        Prefs = new MagicPrefs( 'demo', function(){ 
+            var views = Prefs.GetPref( 'views' );
+            
+            if( !views ){
+                Prefs.SavePref( 'views', 1 );
+            }else{
+                Prefs.SavePref( 'views', ++views  );
             }
-        ];
+            
+            document.getElementById( 'views' ).innerHTML = 'This demo has been viewed by you ' + views + ' times'; 
+        } );
         
-        Interface.BuildList( { list: MagicListDef, name: 'help_index', el: 'help_content', append: true } );
+        ButtonizeMainMenu();
+        
+        Interface.after_transition = function( newView ){
+            if( newView.id == 'help' ){
+                ButtonizeMainMenu();
+            }
+        }
+        
         
         //Editing the help_content div after here seems to break the list functions. This is a known issue
         //that is being worked on. You can always call the MagicListItem function manually to get any element
@@ -99,10 +98,57 @@
             
             <div class="view" id="help">
                 <div class="view_content" id="help_content">
+                    <ul class="list" id="settings_list">
+                        <li id="list_item_quickstart">
+                            <div class="list_label">
+                                Quick Start
+                            </div>
+                            <div class="list_value">
+                                <img class="list_arrow" src="list_arrow.png" />
+                            </div>
+                        </li>
+                        
+                        <li id="list_item_about">
+                            <div class="list_label">
+                                About
+                            </div>
+                            <div class="list_value">
+                                <img class="list_arrow" src="list_arrow.png" />
+                            </div>
+                        </li>
+                        
+                        <li id="list_item_howitworks">
+                            <div class="list_label">
+                                How it Works
+                            </div>
+                            <div class="list_value">
+                                <img class="list_arrow" src="list_arrow.png" />
+                            </div>
+                        </li>
+                        
+                        <li id="list_item_phonegap">
+                            <div class="list_label">
+                                PhoneGap
+                            </div>
+                            <div class="list_value">
+                                <img class="list_arrow" src="list_arrow.png" />
+                            </div>
+                        </li>
+                        
+                        <li id="list_item_credits">
+                            <div class="list_label">
+                                Credits
+                            </div>
+                            <div class="list_value">
+                                <img class="list_arrow" src="list_arrow.png" />
+                            </div>
+                        </li>
+                        
+                        
+                    </ul>
                     
-                    
-                    
-
+                    <div class="list_section_note" id="views" style="margin-top: 20px;margin-bottom:20px"></div>
+                    <div class="list_section_note" id="version"></div>
                 </div>
             </div>
             
@@ -123,14 +169,6 @@
                     <p>Magic Framework is a native iPhone UI imitator built in html/css/javascript. It's useful for online websites or on-device Webkit-based applications looking to imitate the native iPhone UI without having to write native code.
                     </p>
                     
-                </div>
-            </div>
-            
-            <div class="view" id="help_sec">
-                <div class="view_content help_content" id="help_sec_content">
-                    <h2>SEC</h2>
-                    <p>The SEC's job is to regulate the market, and root out Inside Traders like yourself. The more successful you are, the most attention you'll attract from the SEC. Similarly, the more you trade on the advice of the Tipster, the more attention you'll attract from the SEC.</p>
-                    <p>If your SEC threat bar gets to full, you'll be busted by the SEC and have to face trial for charges of Inside Trading!</p>
                 </div>
             </div>
             

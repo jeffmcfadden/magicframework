@@ -132,6 +132,12 @@ body{
 	margin-left: -36px;
 }
 
+.list li.active{
+    background-image: url( 'selection.png' );
+    background-repeat: repeat-x;
+    background-color: #194fdb !important;
+}
+
 .list li:first-of-type{
 	border-top: 1px solid #AAA;
 	-webkit-border-top-right-radius:    8px 8px;

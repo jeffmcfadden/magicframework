@@ -1,3 +1,35 @@
-Magic Framework version 0.01
-
+Magic Framework version 0.02
 By Jeff McFadden
+http://www.jeffmcfadden.com/projects/Magic%20Framework/
+
+License
+This work by Jeff McFadden is licensed under a Creative Commons Attribution 3.0 United States License. Please take it, use it, make it better, sell something with it, etc. Just give me some props somewhere.
+
+
+RELEASE NOTES
+
+Version 0.02 - March 12, 2009
+
+NOW HOSTED ON GITHUB. http://github.com/jeffmcfadden/magicframework/
+
+WARNING: Many changes. Your old code will probably break somehow.
+
+- New module: MagicPref
+An HTML5 DB wrapper for saving data. Very easy api. 
+var myPrefs = new MagicPrefs( [dbname], [callback once data is loaded] );
+myPref.SavePref( [name], [val] );
+var val = myPref.GetPref( [name] );
+
+Be careful not to use a preference value before the callback is called. You might end up trying to get a preference that hasn't yet been loaded. It's best to use the callback to kickoff any code that needs to use data from the preferences.
+
+- New module: MagicButton
+These buttons are magic. They'll work with touch events as well as click events. They detect whether you're on the desktop or mobile and adjust behavior as needed. They're creatable on the fly with any element. On mousedown or touchstart they'll get a new css class, 'active', which you can style.
+
+- New Feature: AutoDestruct
+To improve performance for apps with a lot of views, auto destruction of unused views will take place. This means they will be removed from the dom completely. You can turn this off with the enable_self_destruct value of the MagicFramework prototype.
+
+If you do this you have to have a callback for redrawing any necessary UI elements. Use the after_transition callback. If you try to use before_transition your view won't exist yet, so that won't work.
+
+If you build your app using an MVC framework, and your controller is doing all the movement forwards and backwards, this is usually pretty easy and natural to accomplish. 
+
+Future versions might have callbacks that can be tied right to views to be called once they're back in the dom. Someone would probably like that feature.
