@@ -101,6 +101,16 @@ MagicPrefs.prototype.GetPref = function( name ){
 	}
 }
 
+//Provided by Andy Edmonds - thanks Andy!
+MagicPrefs.prototype.ErasePref = function(id){
+       //LogIt( 'EraseData' );
+       this.db.transaction(
+               function( tx ){
+                       tx.executeSql( "DELETE FROM SaveData WHERE name= '" + id + "'"  );
+               }
+       );
+}
+
 MagicPrefs.prototype.SaveData = function(){
 	function makeClosure(i, data) { 
 	    return function( tx ){ 
