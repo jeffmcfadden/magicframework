@@ -1,8 +1,13 @@
+/**
+ * For use with or without MagicFramework
+ * http://www.jeffmcfadden.com/Magic%20Framework/
 
+ * This work by Jeff McFadden is licensed under a Creative Commons Attribution 3.0 United States License. 
+ * Please take it, use it, make it better, sell something with it, etc. Just give me some props somewhere.
+ * 
+ *
+ */
 
-var InsideTrader = InsideTrader || {};
-
-//var MagicPrefs = MagicPrefs || {};
 
 /**
  * Config Saver Class
