@@ -25,11 +25,21 @@
     var Prefs;
     
     function ButtonizeMainMenu(){
+        if( Prefs.GetPref( 'toggle_test' ) ){
+    		document.getElementById( 'toggle_test_onoff' ).className = 'on_off_control on';
+    	}else{
+    		document.getElementById( 'toggle_test_onoff' ).className = 'on_off_control off';
+    	}
+    	
+        
         Interface.MakeMagicButton( 'list_item_quickstart', function(){ Interface.GoForward( 'help_quickstart', 'Quick Start' ); } );
         Interface.MakeMagicButton( 'list_item_about', function(){ Interface.GoForward( 'help_about', 'About' ); } );
         Interface.MakeMagicButton( 'list_item_howitworks', function(){ Interface.GoForward( 'help_works', 'How It Works' ); } );
         Interface.MakeMagicButton( 'list_item_phonegap', function(){ Interface.GoForward( 'help_phonegap', 'PhoneGap' ); } );
         Interface.MakeMagicButton( 'list_item_credits', function(){ Interface.GoForward( 'help_credits', 'Credits' ); } );
+        
+        Interface.MakeMagicButton( 'toggle_test_onoff', function(){ var new_val = Interface.toggleOnOffControl( 'toggle_test_onoff' ); Prefs.SavePref( 'toggle_test', new_val ); } );
+    	
         
         document.getElementById( 'version' ).innerHTML = 'Magic Framework ' + Interface.version + '</div>';
     }
@@ -40,7 +50,7 @@
         Interface.GoForward( 'help', 'Main Menu' );
         setTimeout( function(){ Interface.HideSplash(); }, 300 );
         
-        Prefs = new MagicPrefs( 'demo', function(){ 
+        Prefs = new MagicPrefs( 'demo_2', function(){ 
             var views = Prefs.GetPref( 'views' );
             
             if( !views ){
@@ -50,9 +60,10 @@
             }
             
             document.getElementById( 'views' ).innerHTML = 'This demo has been viewed by you ' + views + ' times'; 
+            
+            ButtonizeMainMenu();
         } );
         
-        ButtonizeMainMenu();
         
         Interface.after_transition = function( newView ){
             if( newView.id == 'help' ){
@@ -143,10 +154,19 @@
                                 <img class="list_arrow" src="list_arrow.png" />
                             </div>
                         </li>
-                        
-                        
                     </ul>
                     
+                    <ul class="list">
+                        <li id="list_toggle">
+                            <div class="list_label">
+                                Toggle
+                            </div>
+                            <div class="list_value">
+                                <div id="toggle_test_onoff" class="on_off_control off">&nbsp;</div>
+                            </div>
+                        </li>
+                    </ul>
+                        
                     <div class="list_section_note" id="views" style="margin-top: 20px;margin-bottom:20px"></div>
                     <div class="list_section_note" id="version"></div>
                 </div>

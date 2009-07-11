@@ -30,7 +30,7 @@ var MagicFramework = function( params ){
 	this.splash_hide_delay = 500;
 }
 
-MagicFramework.prototype.version = '0.02';
+MagicFramework.prototype.version = '0.03';
 
 /**
  * If detect is true we'll try to detect if the user is using the mobile device or safari.
@@ -721,6 +721,22 @@ MagicButton.prototype.onTouchEnd = function( e ){
     }
 
     return false;
+}
+
+MagicFramework.prototype.toggleOnOffControl = function( el_id ){
+	var ret_val = false;
+	
+    if( $( '#' + el_id ).hasClass( 'off' ) ){
+		$( '#' + el_id ).removeClass( 'off' );
+		$( '#' + el_id ).addClass( 'on' );
+		ret_val = true;
+    }else{
+		$( '#' + el_id ).removeClass( 'on' );
+		$( '#' + el_id ).addClass( 'off' );
+		ret_val = false;
+    }
+
+	return ret_val;
 }
 
 function LogIt( msg ){
